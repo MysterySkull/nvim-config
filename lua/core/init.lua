@@ -57,10 +57,10 @@ local opts = {}
 
 require("lazy").setup(plugins, opts)
 
-require("lua/plugins/color_scheme")
-require("lua/plugins/lsp")
-require("lua/plugins/nvim-lines")
-require("/lua/plugins/autocompletion")
+require("plugins/color_scheme")
+require("plugins/lsp")
+require("plugins/nvim-lines")
+require("plugins/autocompletion")
 require("nvim-tree").setup{}
 require("flutter-tools").setup {
    widget_guides = {
