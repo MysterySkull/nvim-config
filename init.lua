@@ -9,4 +9,4 @@ vim.opt.expandtab = true            -- tabs are spaces, mainly because of python
 --vim.opt.foldmethod = "indent"
 --vim.opt.foldminlines = 0
 
-require("core")
+require('core')
