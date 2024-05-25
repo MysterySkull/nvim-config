@@ -3,15 +3,13 @@ pack.__index = pack
 
 function pack:bootstrap()
 
-   -- For adding repositories to module configurations
    self.repos = {}
-   local disable_modules = {}
+   local opts = {}
 
-   -- Add all folder where 'packages.lua' files can be found
-   -- in './lua/modules/' folder
    config_path = '/home/guillaume/.config/nvim'
    modules_path = table.concat({ config_path, 'lua', 'modules' }, '/')
 
+   -- List all packages to add, and load them
    local list = vim.fs.find('package.lua', { path = module_path , type = file, limit = 10})
    if #list == 0 then
       return
@@ -37,16 +35,14 @@ function pack:bootstrap()
    end
    vim.opt.rtp:prepend(lazypath)
 
-   -- LOAD PACKAGES --
-   -- For loading packages, need to call for pack inside each modules
-   
    local lazy = require('lazy')
-   local opts = {}
-
+   
+   -- Set lazy up according to all config done in correspounding packages files
    lazy.setup(self.repos, opts)
 
 end
 
+-- Utils fonction to add Lazy config
 function pack.package(repo)
    if not pack.repos then
       pack.repos = {}
