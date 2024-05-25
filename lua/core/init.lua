@@ -1,7 +1,7 @@
 require('core.pack'):bootstrap()
-require("keymaps")
+--require("keymaps")
 
-local plugins = {
+--[[local plugins = {
    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Color scheme "Catpuccin"
 
    -- LSP configuration
@@ -45,10 +45,10 @@ local plugins = {
 }
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, opts)]]
 
-require("plugins/color_scheme")
---[[require("plugins/lsp")
+--[[require("plugins/color_scheme")
+require("plugins/lsp")
 require("plugins/nvim-lines")
 require("plugins/autocompletion")
 require("nvim-tree").setup{}
