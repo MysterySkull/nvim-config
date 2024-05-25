@@ -10,10 +10,12 @@ function pack:bootstrap()
    modules_path = table.concat({ config_path, 'lua', 'modules' }, '/')
 
    -- List all packages to add, and load them
-   local list = vim.fs.find('package.lua', { path = module_path , type = file, limit = 10})
+   local list = vim.fs.find('package.lua', { path = modules_path , type = file, limit = 10})
    if #list == 0 then
       return
    end
+
+   vim.print(list)
 
    for _, f in pairs(list) do
       local _, pos = string.find(f, modules_path)
