@@ -20,7 +20,6 @@ function pack:bootstrap()
    for _, f in pairs(list) do
       local _, pos = string.find(f, modules_path)
       f = string.sub(f, pos - 6, #f - 4)
-      vim.print("f : ", f)
       require(f)
    end
 
@@ -52,7 +51,7 @@ function pack.package(repo)
    if not pack.repos then
       pack.repos = {}
    end
-   table.insert(pack.repos, repos)
+   table.insert(pack.repos, repo)
 end
 
 return pack
