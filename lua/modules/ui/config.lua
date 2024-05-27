@@ -52,7 +52,7 @@ function config.lualine()
 end
 
 function config.bufferline()
-   require("bufferline").setup()
+   require("cokeline").setup()
 end
 
 return config
