@@ -59,4 +59,10 @@ function config.nvimtree()
    require("nvim-tree").setup{}
 end
 
+function config.ibl()
+   require("ibl").setup({
+      
+   })
+end
+
 return config

@@ -5,13 +5,15 @@ local config = require('modules.ui.config')
 package({ "catppuccin/nvim", 
    name = "catppuccin", 
    priority = 1000,
-   config = config.catppuccin}) -- Color scheme "Catpuccin"
+   config = config.catppuccin
+}) -- Color scheme "Catpuccin"
 
 
    -- Lua Line
 package({ "nvim-lualine/lualine.nvim", 
    dependencies = "nvim-tree/nvim-web-devicons",
-   config = config.lualine})
+   config = config.lualine
+})
 
    -- Bufferline
 --[[package({ 'akinsho/bufferline.nvim', 
@@ -35,4 +37,10 @@ package({ "nvim-tree/nvim-tree.lua",
    lazy = true, 
    dependencies = 'nvim-tree/nvim-web-devicons',
    config = config.nvimtree()
+})
+
+package({ "lukas-reineke/indent-blankline.nvim", 
+   main = "ibl", 
+   opts = {},
+   --config = config.ibl()
 })
