@@ -55,4 +55,8 @@ function config.bufferline()
    require("cokeline").setup()
 end
 
+function config.nvimtree()
+   require("nvim-tree").setup{}
+end
+
 return config
