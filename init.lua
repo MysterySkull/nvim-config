@@ -10,6 +10,7 @@ vim.opt.expandtab = true            -- tabs are spaces, mainly because of python
 --vim.opt.foldminlines = 0
 
 require('core')
+require('keymaps')
 
 -- help for quit with last buffer when nvim-tree is open
 -- this means that when last buffer is closed via ":q" or ":bd"
