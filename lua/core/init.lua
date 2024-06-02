@@ -1,17 +1,7 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-   vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
-      lazypath,
-   })
-end
-vim.opt.rtp:prepend(lazypath)
+require('core.pack'):bootstrap()
+--require("keymaps")
 
-local plugins = {
+--[[local plugins = {
    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Color scheme "Catpuccin"
 
    -- LSP configuration
@@ -55,12 +45,12 @@ local plugins = {
 }
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, opts)]]
 
-require("lua/plugins/color_scheme")
-require("lua/plugins/lsp")
-require("lua/plugins/nvim-lines")
-require("/lua/plugins/autocompletion")
+--[[require("plugins/color_scheme")
+require("plugins/lsp")
+require("plugins/nvim-lines")
+require("plugins/autocompletion")
 require("nvim-tree").setup{}
 require("flutter-tools").setup {
    widget_guides = {
@@ -74,4 +64,4 @@ require("nvim-treesitter").setup {
    --indent = {
       --enable = true,
    --},
-}
+}]]
