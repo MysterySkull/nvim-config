@@ -36,7 +36,7 @@ package({  "willothy/nvim-cokeline",
 package({ "nvim-tree/nvim-tree.lua", 
    lazy = true, 
    dependencies = 'nvim-tree/nvim-web-devicons',
-   config = config.nvimtree()
+   config = config.nvimtree
 })
 
 --Blank Line for indentation
