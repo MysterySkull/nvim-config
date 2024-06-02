@@ -151,9 +151,9 @@ function config.nvimtree()
 end
 
 function config.ibl()
-   require("ibl").setup({
-
-   })
+   require("ibl").setup{
+     scope = { enabled = false, }
+   }
 end
 
 return config

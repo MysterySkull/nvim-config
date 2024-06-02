@@ -15,8 +15,6 @@ function pack:bootstrap()
       return
    end
 
-   vim.print(list)
-
    for _, f in pairs(list) do
       local _, pos = string.find(f, modules_path)
       f = string.sub(f, pos - 6, #f - 4)

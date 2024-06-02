@@ -1,21 +1,21 @@
 local package = require('core.pack').package
 local config = require('modules.ui.config')
 
-   -- Colorsheme
+-- Colorsheme
 package({ "catppuccin/nvim", 
    name = "catppuccin", 
    priority = 1000,
    config = config.catppuccin
-}) -- Color scheme "Catpuccin"
+}) 
 
 
-   -- Lua Line
+-- Lua Line
 package({ "nvim-lualine/lualine.nvim", 
    dependencies = "nvim-tree/nvim-web-devicons",
    config = config.lualine
 })
 
-   -- Bufferline
+-- Bufferline
 --[[package({ 'akinsho/bufferline.nvim', 
    version = "*",
    commit = "73540cb95f8d95aa1af3ed57713c6720c78af915",
@@ -32,15 +32,14 @@ package({  "willothy/nvim-cokeline",
    config = config.bufferline
 })
 
-   -- file explorer
+-- file explorer
 package({ "nvim-tree/nvim-tree.lua", 
    lazy = true, 
    dependencies = 'nvim-tree/nvim-web-devicons',
    config = config.nvimtree()
 })
 
+--Blank Line for indentation
 package({ "lukas-reineke/indent-blankline.nvim", 
-   main = "ibl", 
-   opts = {},
-   --config = config.ibl()
+   config = config.ibl
 })
