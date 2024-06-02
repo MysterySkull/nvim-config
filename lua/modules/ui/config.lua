@@ -52,16 +52,85 @@ function config.lualine()
 end
 
 function config.bufferline()
-   require("cokeline").setup()
+   local get_hex = require('cokeline.hlgroups').get_hl_attr
+
+   require("cokeline").setup{
+      default_hl = {
+         fg = function(buffer)
+            return
+            buffer.is_focused
+            and get_hex('Normal', 'fg')
+            or get_hex('Comment', 'fg')
+         end,
+         bg = function() return get_hex('ColorColumn', 'bg') end,
+      },
+
+      sidebar = {
+         filetype = {'NvimTree', 'neo-tree'},
+         components = {
+            {
+               text = ' ',
+            },
+            {
+               text = function(buf)
+                  return "File Explorer"
+               end,
+               fg = function() return get_hex('Constant', 'fg') end,
+               --bg = function() return get_hex('NvimTreeNormal', 'bg') end,
+               bold = true,
+            },
+            {
+               text = ' ',
+            },
+         }
+      },
+
+      components = {
+         {
+            text = function(buffer) return (buffer.index ~= 1) and '▏' or '' end,
+         },
+         {
+            text = '  ',
+         },
+         {
+            text = function(buffer)
+               return buffer.devicon.icon
+            end,
+            fg = function(buffer)
+               return buffer.devicon.color
+            end,
+         },
+         {
+            text = ' ',
+         },
+         {
+            text = function(buffer) return buffer.filename .. '  ' end,
+            bold = function(buffer)
+               return buffer.is_focused
+            end,
+         },
+         {
+            text = '',
+            on_click = function(_, _, _, _, buffer)
+               buffer:delete()
+            end,
+         },
+         {
+            text = '  ',
+         },
+      },
+   }
 end
 
 function config.nvimtree()
-   require("nvim-tree").setup{}
+   require("nvim-tree").setup{
+
+   }
 end
 
 function config.ibl()
    require("ibl").setup({
-      
+
    })
 end
 
