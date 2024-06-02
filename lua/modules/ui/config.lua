@@ -54,7 +54,24 @@ end
 function config.bufferline()
    local get_hex = require('cokeline.hlgroups').get_hl_attr
 
+   --get color from color scheme
+   local color = require("catppuccin.palettes").get_palette "macchiato"
+
+   local bg_buff_line_color = color.crust
+   local bg_unselected_buff_color = color.mantle
+   local bg_selected_buff_color = color.base
+   local bg_file_explorer_color = color.mantle
+
+   local fg_file_explorer_color = color.peach
+   
+   local fg_buffer_selected_modified = color.green
+   local fg_buffer_unselected_modified = color.text
+
+   vim.api.nvim_set_hl(0, "TabLine", { bg = bg_buff_line_color})
+
    require("cokeline").setup{
+      fill_hl = 'TabLine',
+
       default_hl = {
          fg = function(buffer)
             return
@@ -62,35 +79,32 @@ function config.bufferline()
             and get_hex('Normal', 'fg')
             or get_hex('Comment', 'fg')
          end,
-         bg = function() return get_hex('ColorColumn', 'bg') end,
+         bg = function(buffer)
+            if buffer.filetype == "NvimTree" then return bg_file_explorer_color
+            elseif buffer.is_focused then return bg_selected_buff_color
+            elseif buffer.is_focused == false then return bg_unselected_buff_color
+            else return bg_buff_line_color
+            end
+         end,
       },
 
       sidebar = {
          filetype = {'NvimTree', 'neo-tree'},
          components = {
             {
-               text = ' ',
-            },
-            {
-               text = function(buf)
-                  return "File Explorer"
+               text = function(buffer)
+                  return " File Explorer"
                end,
-               fg = function() return get_hex('Constant', 'fg') end,
-               --bg = function() return get_hex('NvimTreeNormal', 'bg') end,
+               fg = fg_file_explorer_color,
                bold = true,
-            },
-            {
-               text = ' ',
             },
          }
       },
 
       components = {
          {
-            text = function(buffer) return (buffer.index ~= 1) and '▏' or '' end,
-         },
-         {
-            text = '  ',
+            text = '  ',
+            fg = bg_buff_line_color,
          },
          {
             text = function(buffer)
@@ -110,13 +124,21 @@ function config.bufferline()
             end,
          },
          {
+            text = function(buffer) return buffer.is_modified and '' or '' end,
+            fg = function(buffer) return buffer.is_focused and fg_buffer_selected_modified or fg_buffer_unselected_modified end,
+         },
+         {
+            text = ' ',
+         },
+         {
             text = '',
             on_click = function(_, _, _, _, buffer)
                buffer:delete()
             end,
          },
-         {
-            text = '  ',
+                  {
+            text = '  ',
+            fg = bg_buff_line_color,
          },
       },
    }
