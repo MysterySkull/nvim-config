@@ -26,4 +26,17 @@ function config.ufo()
    require('ufo').setup{}
 end
 
+function config.cmp()
+   
+end
+
+function config.treesitter()
+   require("nvim-treesitter").setup{
+      ensure_insalled = { "lua",},
+      sync_insall = false,
+      highlight = { enable = true },
+      indent = { enable = true },
+   }
+end
+
 return config
