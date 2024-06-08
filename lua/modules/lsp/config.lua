@@ -1,7 +1,7 @@
 local config = {}
 
 function config.mason()
-  require('mason').setup{}
+   require('mason').setup{}
 end
 
 function config.cmp()
@@ -15,8 +15,8 @@ function config.cmp()
          end,
       },
       window = {
-         -- completion = cmp.config.window.bordered(),
-         -- documentation = cmp.config.window.bordered(),
+         completion = cmp.config.window.bordered(),
+         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -35,7 +35,6 @@ function config.cmp()
    })
 
    -- Set up lspconfig.
-   local capabilities = vim.lsp.protocol.make_client_capabilities()
    local capabilities = require('cmp_nvim_lsp').default_capabilities()
    capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
@@ -43,7 +42,14 @@ function config.cmp()
    }
 
    require'lspconfig'.lua_ls.setup({
-      capabilities = capabilities
+      capabilities = capabilities,
+      settings = {
+         Lua = {
+            diagnostics = {
+               globals = { 'vim' }
+            }
+         }
+      }
    })
 end
 
