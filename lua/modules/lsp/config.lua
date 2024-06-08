@@ -27,17 +27,21 @@ function config.cmp()
       }),
       sources = cmp.config.sources({
          { name = 'nvim_lsp' },
-         { name = 'vsnip' }, -- For vsnip users.
-         -- { name = 'luasnip' }, -- For luasnip users.
-         -- { name = 'ultisnips' }, -- For ultisnips users.
-         -- { name = 'snippy' }, -- For snippy users.
+         { name = 'vsnip' },
+
       }, {
          { name = 'buffer' },
       })
    })
 
    -- Set up lspconfig.
+   local capabilities = vim.lsp.protocol.make_client_capabilities()
    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+   capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true
+   }
+
    require'lspconfig'.lua_ls.setup({
       capabilities = capabilities
    })
